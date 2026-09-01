@@ -1,0 +1,102 @@
+nohup: ignoring input
+======================================================================
+Experiment 1: Joint Latent-State EM Recovery Study
+======================================================================
+
+[1/6] Simulating N=5000 borrowers (seed=1234)...
+      Default rate: 0.0688
+      True PD range: [0.0100, 0.2500]
+      Profile 1: n=1965 (39.3%)
+      Profile 2: n=1011 (20.2%)
+      Profile 3: n=1288 (25.8%)
+      Profile 4: n=736 (14.7%)
+
+[2/6] Fitting joint EM (20 restarts, max 300 iter each)...
+Run  1/20: converged=True, n_iter=147, min_ESS=785.8, ll=-15820.6254, admissible=True
+Run  2/20: converged=True, n_iter=146, min_ESS=786.0, ll=-15820.6255, admissible=True
+Run  3/20: converged=True, n_iter=141, min_ESS=786.1, ll=-15820.6253, admissible=True
+Run  4/20: converged=True, n_iter=142, min_ESS=785.3, ll=-15820.6257, admissible=True
+Run  5/20: converged=True, n_iter=154, min_ESS=785.6, ll=-15820.6257, admissible=True
+Run  6/20: converged=True, n_iter=147, min_ESS=786.1, ll=-15820.6254, admissible=True
+Run  7/20: converged=True, n_iter=152, min_ESS=785.8, ll=-15820.6255, admissible=True
+Run  8/20: converged=True, n_iter=143, min_ESS=785.8, ll=-15820.6256, admissible=True
+Run  9/20: converged=True, n_iter=141, min_ESS=786.2, ll=-15820.6252, admissible=True
+Run 10/20: converged=True, n_iter=147, min_ESS=786.1, ll=-15820.6253, admissible=True
+Run 11/20: converged=True, n_iter=134, min_ESS=786.0, ll=-15820.6254, admissible=True
+Run 12/20: converged=True, n_iter=143, min_ESS=786.0, ll=-15820.6252, admissible=True
+Run 13/20: converged=True, n_iter=145, min_ESS=786.5, ll=-15820.6251, admissible=True
+Run 14/20: converged=True, n_iter=144, min_ESS=785.7, ll=-15820.6255, admissible=True
+Run 15/20: converged=True, n_iter=143, min_ESS=786.1, ll=-15820.6252, admissible=True
+Run 16/20: converged=True, n_iter=147, min_ESS=785.2, ll=-15820.6258, admissible=True
+Run 17/20: converged=True, n_iter=138, min_ESS=786.5, ll=-15820.6251, admissible=True
+Run 18/20: converged=True, n_iter=144, min_ESS=785.7, ll=-15820.6255, admissible=True
+Run 19/20: converged=True, n_iter=138, min_ESS=786.4, ll=-15820.6252, admissible=True
+Run 20/20: converged=True, n_iter=142, min_ESS=786.1, ll=-15820.6253, admissible=True
+
+Best run: index=16, ll=-15820.625063, n_admissible=20/20
+      Admissible runs: 20/20
+      Best run log-likelihood: -15820.625063
+      Best run index: 16
+
+[3/6] Aligning estimated labels to true labels...
+      Aligned estimated pi:   [0.3655 0.2249 0.2523 0.1573]
+      True              pi:   [0.4  0.2  0.25 0.15]
+      Aligned estimated p:    [0.0076 0.0393 0.0725 0.2473]
+      True              p:    [0.01 0.05 0.1  0.25]
+
+[4/6] Computing score-based predictive posteriors...
+      Estimated PD range: [0.0076, 0.2473]
+
+[5/6] Computing recovery metrics...
+
+  Recovery Metrics:
+    MAE_pi    = 1.7264e-02  (target ~4.591e-3)
+    MSE_mu    = 6.0545e-03  (target ~1.170e-3)
+    MSE_Sigma = 3.8522e-03  (target ~2.157e-3)
+    MAE_p     = 1.0835e-02  (target ~3.263e-3)
+    MSE_p     = 2.2099e-04  (target ~1.902e-5)
+    MSE_gamma = 5.4083e-03  (target ~8.163e-4)
+    KL_avg    = 1.0621e-02  (target ~1.736e-3)
+    JS_avg    = 2.7872e-03  (target ~4.367e-4)
+    MSE_PD    = 1.2766e-04  (target ~1.419e-5)
+    MAE_PD    = 7.7527e-03  (target ~2.691e-3)
+
+[6/6] Saving results to results/...
+    Saved: /workspace/project/results/exp1_parameter_recovery.csv
+    Saved: /workspace/project/results/exp1_recovery_metrics.csv
+    Saved: /workspace/project/results/exp1_overview.png
+    Saved: /workspace/project/results/exp1_posterior_recovery.png
+    Saved: /workspace/project/results/exp1_em_convergence.png
+
+Experiment 1 complete.
+
+======================================================================
+Experiment 2: Product-of-Marginals Approximation Analysis
+======================================================================
+
+[1/3] Computing product-of-marginals approximation...
+
+  Results:
+    avg D_KL(joint || PM)  = 4.2846e-03  (target ~2.474e-3)
+    MAE_PD^{PM}            = 5.4335e-04  (target ~2.193e-4)
+
+  Borrower-level KL distribution:
+    min  = 3.3351e-14
+    p25  = 1.6449e-06
+    med  = 4.6903e-05
+    p75  = 8.2832e-04
+    max  = 1.5043e-01
+
+  PD distortion |hat_PD^PM - hat_PD| distribution:
+    min  = 3.8858e-15
+    p25  = 2.9043e-07
+    med  = 6.1754e-06
+    p75  = 1.0352e-04
+    max  = 1.8870e-02
+
+[2/3] Saving results...
+    Saved: /workspace/project/results/exp2_pm_metrics.csv
+    Saved: /workspace/project/results/exp2_product_marginals.png
+
+Experiment 2 complete.
+All experiments completed. Results saved to results/
